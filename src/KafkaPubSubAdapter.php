@@ -96,10 +96,10 @@ class KafkaPubSubAdapter implements PubSubAdapterInterface
      * @param string $channel
      * @param mixed $message
      */
-    public function publish($channel, $message)
+    public function publish($channel, $message, $key=null)
     {
         $topic = $this->producer->newTopic($channel);
-        $topic->produce(RD_KAFKA_PARTITION_UA, 0, Utils::serializeMessage($message));
+        $topic->produce(RD_KAFKA_PARTITION_UA, 0, Utils::serializeMessage($message), $key);
     }
 
     /**
